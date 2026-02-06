@@ -1,7 +1,7 @@
 ---
 layout: default
 title: About              <!-- 상단 메뉴와 브라우저 탭에 표시되는 제목 -->
-permalink: /about/        <!-- About 페이지 URL -->
+<!-- permalink: /about/        <!-- About 페이지 URL --> -->
 ---
 
 <!-- =======================
