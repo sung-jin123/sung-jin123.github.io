@@ -1,8 +1,8 @@
 ---
 layout: project
-title: "Real-Time Reactive Control Using a Capacitive Proximity Sensor on UR10"
-date: 2026-02-10
-categories: [Robotics, HRI, Proximity Sensing]
+title: "Proximity Reactive Control"
+description: "..."
+featured_image: "/assets/images/projects/proximity-reactive-control/featured.jpg"
 ---
 
 ## Overview
