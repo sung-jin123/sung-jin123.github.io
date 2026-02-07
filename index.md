@@ -121,17 +121,15 @@ layout: default
         <div class="skill-category">
           <h3><i class="fas fa-robot"></i> Robotics</h3>
           <div class="skill-tags">
-            <span class="skill-tag">ROS</span>
-            <span class="skill-tag">Kinematics</span>
-            <span class="skill-tag">Path Planning</span>
-            <span class="skill-tag">SLAM</span>
+            <span class="skill-tag">ROS1, ROS2</span>
+            <span class="skill-tag">Reactive Control</span>
+            <span class="skill-tag">HRI</span>
           </div>
         </div>
         <div class="skill-category">
           <h3><i class="fas fa-microchip"></i> Electronics</h3>
           <div class="skill-tags">
-            <span class="skill-tag">Arduino</span>
-            <span class="skill-tag">ESP32</span>
+            <span class="skill-tag">STMCubeIDE</span>
             <span class="skill-tag">PCB Design</span>
             <span class="skill-tag">Sensors</span>
           </div>
@@ -142,16 +140,14 @@ layout: default
             <span class="skill-tag">Python</span>
             <span class="skill-tag">C/C++</span>
             <span class="skill-tag">MATLAB</span>
-            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">LabVIEW</span>
           </div>
         </div>
         <div class="skill-category">
           <h3><i class="fas fa-cube"></i> CAD/Design</h3>
           <div class="skill-tags">
-            <span class="skill-tag">SolidWorks</span>
-            <span class="skill-tag">Fusion 360</span>
-            <span class="skill-tag">3D Printing</span>
-            <span class="skill-tag">KiCad</span>
+            <span class="skill-tag">Inventor</span>
+            <span class="skill-tag">UG NX</span>
           </div>
         </div>
       </div>
