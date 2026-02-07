@@ -45,7 +45,16 @@ cd MESGRO
 ### 2. Configure Your Site
 Edit `_config.yml` to customize your portfolio details.
 
-### 3. Run Locally (Optional)
+### 3. Add Your Media Files (Photos, Videos, Documents)
+📸 **See [MEDIA_UPLOAD_GUIDE.md](MEDIA_UPLOAD_GUIDE.md) for detailed instructions on where to add your photos, videos, and research documents.**
+
+The guide covers:
+- Where to place photos, videos, and PDFs
+- Recommended file formats and sizes
+- Directory structure for organizing media
+- How to reference files in your projects
+
+### 4. Run Locally (Optional)
 If you prefer local development:
 ```bash
 bundle install
