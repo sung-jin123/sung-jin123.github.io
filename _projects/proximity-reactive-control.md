@@ -18,13 +18,7 @@ gallery:
     description: "Real robot demo: distance threshold triggers E-stop and joint velocity converges to zero."
 ---
 
-## Motivation
-This project presents a **real-time adaptive reactive control framework** for **pre-contact safety** in **Human–Robot Interaction (HRI)** using a **bendable capacitive proximity sensor** mounted on a manipulator.  
-A key goal is to detect nearby objects **before contact** and trigger **reactive safety behaviors** in real time.
-
----
-
-## Motivation (HRI Safety Gap)
+## Motivation 
 Conventional safety sensing has limitations for pre-contact HRI:
 - **Tactile/force sensors** detect state changes **after contact**
 - **Vision sensors** may suffer from occlusion and blind spots in collaborative environments.
@@ -34,24 +28,23 @@ This work targets a practical, robot-mounted sensing layer that supports **pre-c
 ---
 
 ## Sensor Design: Bendable Capacitive Proximity Sensor
-### 1) Bendable mounting via kerf-pattern electrode
+### 1) kerf-pattern electrode
 Each capacitive sensing layer uses a **kerf pattern** so the same sensor can be mounted on both **flat and curved robot surfaces** without redesign.
 
-### 2) Dual-sensor fusion for distance estimation (Capacitive + ToF)
-Capacitive sensing provides near-field sensitivity and wide FoV, but its distance relationship is **nonlinear**.  
-To address this, a ToF sensor is fused to **linearize/denoise** the distance estimate using an exponential model:
+### 2) Dual-sensor fusion for distance estimation
+While **capacitive sensing** offers high **near field sensitivity** and a **wide field of view (FoV)**, it exhibits a **nonlinear** relationship with distance. Conversely, **ToF sensors** allow for **long range measurement** despite having a **narrow FoV**. To address these characteristics, the two sensors are fused to **linearize and denoise the signal**.
 
 - Model fitting:  $X = a \cdot e^{bY}$
 - Distance inference: $Y = \frac{\ln X - \ln a}{b}$
 
-where `X` is the capacitive measurement and `Y` is the distance.
+where $X$ is the capacitive measurement and $Y$ is the distance.
 
 ### 3) Embedded processing + CAN streaming
-Signals are preprocessed on the **MCU** and transmitted via **CAN** to the robot software stack (ROS).
+The FDC2214 capacitive ASIC signals are processed by the **MCU** via I2C, with the final distance data transmitted via the **CAN** bus at **100 Hz**.
 
 ---
 
-## Real-Time Control Architecture (CAN → ROS → Safety Logic)
+## Real-Time Control Architecture
 The control pipeline is:
 1. Robot executes a planned trajectory (quintic polynomial trajectory planning)
 2. Proximity distance is streamed via CAN and monitored in ROS
@@ -77,10 +70,3 @@ Experiments with quintic-polynomial trajectories show that when an obstacle appr
 ## Future Work
 - Extend the safety layer from **Emergency Stop** to **continuous avoidance / distance-keeping control**
 - Improve robustness for deployment (sensor mounting stability, wiring/noise, real-world repeatability)
-
----
-
-## Media & Resources
-- **Project repository:** https://github.com/sung-jin123
-- **Poster PDF:** (사이트에 PDF 업로드 후 링크 추가)
-- **Demo video:** (YouTube 또는 MP4 업로드 후 연결)
