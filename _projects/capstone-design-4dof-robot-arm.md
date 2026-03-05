@@ -8,11 +8,10 @@ featured_image: "/assets/images/projects/capstone-design-4dof/featured.jpg"
 github_url: ""
 demo_url: ""
 
-gallery:
+schematics:
   - file: "/assets/images/projects/capstone-design-4dof/robot-photo.png"
-    description: "4-DOF Robot Arm Final Assembly"
-  - file: "/assets/images/projects/capstone-design-4dof/yolov4-detection.png"
-    description: "YOLO V4 Object Detection (Coca-Cola / Pepsi)"
+    title: 4-DOF Robot Arm and YOLO V4 Object Detection Result
+    description: "4-DOF Robot Arm Final Assembly, YOLO V4 Object Detection (Coca-Cola / Pepsi)"
   - file: "/assets/images/projects/capstone-design-4dof/system-flow.png"
     description: "System Flow Diagram"
 
@@ -109,6 +108,8 @@ The system successfully demonstrated automatic can grasping and restocking in a 
 - PID control for smoother, safer motor actuation
 - Higher-torque motors to support camera mounting at a better viewpoint
 - Reliable serial communication protocol to close the YOLO → robot arm loop
+
+
 
 ---
 
