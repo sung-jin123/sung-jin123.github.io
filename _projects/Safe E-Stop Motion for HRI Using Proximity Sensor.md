@@ -4,7 +4,7 @@ title: "Safe E-Stop Motion for HRI Using Proximity Sensor"
 description: "A real-time adaptive reactive control framework for safe HRI based on a bendable capacitive proximity sensor that conforms to flat and curved robot surfaces."
 date: 2026-02-01
 categories: [Robotics, HRI, Sensor, ROS2]
-featured_image: "/assets/images/projects/bendable-proximity-sensor/featured.jpg"
+featured_image: "/assets/images/projects/bendable-proximity-sensor/featured.png"
 github_url: ""
 demo_url: ""
 
@@ -13,11 +13,11 @@ featured: true
 published: true
 
 schematics:
-  - file: "/assets/images/projects/bendable-proximity-sensor/sensor_structure.jpg"
+  - file: "/assets/images/projects/bendable-proximity-sensor/sensor_structure.png"
     description: "Structure of the bendable capacitive proximity sensor"
-  - file: "/assets/images/projects/bendable-proximity-sensor/framework.jpg"
+  - file: "/assets/images/projects/bendable-proximity-sensor/framework.png"
     description: "Architecture of adaptive reactive control framework"
-  - file: "/assets/images/projects/bendable-proximity-sensor/result.jpg"
+  - file: "/assets/images/projects/bendable-proximity-sensor/result.png"
     description: "Experimental results - sensor distance and joint velocity response"
 ---
 
