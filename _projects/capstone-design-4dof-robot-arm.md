@@ -91,7 +91,8 @@ $$A = \frac{\sqrt{Z'^2 + R'^2}}{2}$$
 
 ### System Flow
 
-```mermaid
+````html
+<div class="mermaid">
 flowchart TD
     A([🟢 Start]) --> B[Conveyor ON]
     B --> C{Ultrasonic Sensor\nDetects Can?}
@@ -108,7 +109,7 @@ flowchart TD
     style C fill:#3498db,color:#fff
     style E fill:#3498db,color:#fff
     style F fill:#9b59b6,color:#fff
-```
+</div>
 
 ---
 
