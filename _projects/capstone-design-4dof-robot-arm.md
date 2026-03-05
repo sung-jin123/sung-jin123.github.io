@@ -4,7 +4,7 @@ title: "Automated Logistics Management System for Unmanned Convenience Store Usi
 description: "A 4-DOF robot arm system that automatically restocks unmanned convenience store walk-in shelves using YOLO V4 object detection and inverse kinematics."
 date: 2023-08-01
 categories: [Robotics, Arduino, Computer Vision, Mechatronics]
-featured_image: "/assets/images/projects/capstone-design-4dof/featured.jpg"
+featured_image: "/assets/images/projects/capstone-design-4dof/featured.png"
 github_url: ""
 demo_url: ""
 
