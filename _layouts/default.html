@@ -93,6 +93,9 @@
     {% if page.layout == 'project' %}
     <script src="{{ '/assets/js/project-viewer.js' | relative_url }}"></script>
     {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
 </body>
 
 </html>
