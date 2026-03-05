@@ -1,12 +1,12 @@
 ---
 layout: project
 title: "SoC Integrated Platform for Robot Collision Safety"
+description: "Development of an SoC integrated platform for robot collision safety with real-time collision detection and avoidance intelligence (Ministry of Trade, Industry and Energy, Apr 2024 ~ Present)"
 date: 2025-01-01
 categories: [Robotics, Sensor, PCB, ROS2]
 featured: true
 published: true
 featured_image: "/assets/images/projects/soc-platform/featured.png"
-excerpt: "Development of an SoC integrated platform for robot collision safety with real-time collision detection and avoidance intelligence (Ministry of Trade, Industry and Energy, Apr 2024 ~ Present)"
 
 schematics:
   - file: "/assets/images/projects/soc-platform/sensor_structure.png"
