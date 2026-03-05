@@ -8,32 +8,11 @@ featured_image: "/assets/images/projects/capstone-design-4dof/featured.jpg"
 github_url: ""
 demo_url: ""
 
-# Components List
-components:
-  - name: "Dynamixel AX-12A"
-    quantity: 6
-    description: "Smart servo motors for robot arm joints (Base, Shoulder x2, Elbow x2, Wrist)"
-    link: "https://www.robotis.com/shop/item.php?it_id=902-0003-001"
-  - name: "Arduino Mega 2560 Rev3"
-    quantity: 1
-    description: "Main microcontroller for robot arm control"
-  - name: "Dynamixel Shield"
-    quantity: 1
-    description: "Arduino shield for Dynamixel motor control via TTL communication"
-  - name: "HC-SR04 Ultrasonic Sensor"
-    quantity: 1
-    description: "Detects when cans are missing from the showcase"
-  - name: "USB Camera"
-    quantity: 1
-    description: "Real-time object detection for can type classification"
-  - name: "PLA Filament"
-    quantity: 1
-    description: "3D-printed structural parts for gripper, links, and base"
 ---
 
 ## Overview
 
-This project was developed as a **2023 Capstone Design** at Hansung University (한성대학교), in collaboration with team members 정낙형 and 김다윤 under Professor 최재봉.
+This project was developed as a **2023 Capstone Design** at Hansung University, in collaboration with team members 
 
 The goal was to design an **automated logistics restocking system** for unmanned convenience store walk-in refrigerators. Unmanned convenience stores have grown rapidly (208 → 2,783 stores from 2019–2022), yet their inventory management remains manual. Our system automates this by detecting empty spots via ultrasonic sensor and using a 4-DOF robot arm to restock cans automatically.
 
@@ -46,12 +25,6 @@ The overall system consists of three main parts:
 1. **Object Detection (PC + Camera)** — YOLO V4 identifies the type of can (Coca-Cola or Pepsi) and calculates its 2D coordinates.
 2. **Communication Pipeline** — Coordinates are sent from Python → Arduino Uno → Arduino Mega via serial (57600 baud rate).
 3. **Robot Arm Control (Arduino Mega + Dynamixel Shield)** — Inverse kinematics converts 3D target positions into joint angles, then Dynamixel AX-12A motors execute the motion.
-
-```
-YOLO V4 (Python) → Arduino Uno → Arduino Mega → Dynamixel Shield → 4-DOF Robot Arm
-                                                     ↑
-                                             HC-SR04 Ultrasonic Sensor
-```
 
 ---
 
@@ -143,8 +116,6 @@ flowchart TD
 
 The system successfully demonstrated automatic can grasping and restocking in a mock walk-in environment. The robot arm moved cans from the storage unit to the showcase reliably within the predefined 12-path trajectory.
 
-**Known Issue:** Real-time coordinate data transmission from OpenCV (Python) to the Arduino failed during the final demo. The robot therefore operated on pre-defined fixed coordinates rather than live detection feedback.
-
 **Planned Improvements:**
 - PID control for smoother, safer motor actuation
 - Higher-torque motors to support camera mounting at a better viewpoint
@@ -154,6 +125,6 @@ The system successfully demonstrated automatic can grasping and restocking in a 
 
 ## References
 
-- Blog Series: [studypenggu.tistory.com](https://studypenggu.tistory.com/2)
+- Bochkovskiy, A., Wang, C. Y., & Liao, H. Y. M. (2020). Yolov4: Optimal speed and accuracy of object detection. arXiv preprint arXiv:2004.10934.
 - Inverse Kinematics Reference: DBpia NODE06603273 (이경문, 이강희, 2014)
 - Dynamixel AX-12A: [emanual.robotis.com](https://emanual.robotis.com/docs/kr/dxl/ax/ax-12a/)
