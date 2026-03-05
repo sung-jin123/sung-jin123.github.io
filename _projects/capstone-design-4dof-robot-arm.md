@@ -1,0 +1,130 @@
+---
+layout: project
+title: "Automated Logistics Management System for Unmanned Convenience Store Using 4-DOF Robot Arm"
+description: "A 4-DOF robot arm system that automatically restocks unmanned convenience store walk-in shelves using YOLO V4 object detection and inverse kinematics."
+date: 2023-08-01
+categories: [Robotics, Arduino, Computer Vision, Mechatronics]
+featured_image: "/assets/images/projects/capstone-design-4dof/featured.jpg"
+github_url: ""
+demo_url: ""
+
+---
+
+## Overview
+
+This project was developed as a **2023 Capstone Design** at Hansung University, in collaboration with team members
+
+The goal was to design an **automated logistics restocking system** for unmanned convenience store walk-in refrigerators. Unmanned convenience stores have grown rapidly (208 → 2,783 stores from 2019–2022), yet their inventory management remains manual. Our system automates this by detecting empty spots via ultrasonic sensor and using a 4-DOF robot arm to restock cans automatically.
+
+---
+
+## System Architecture
+
+The overall system consists of three main parts:
+
+1. **Object Detection (PC + Camera)** — YOLO V4 identifies the type of can (Coca-Cola or Pepsi) and calculates its 2D coordinates.
+2. **Communication Pipeline** — Coordinates are sent from Python → Arduino Uno → Arduino Mega via serial (57600 baud rate).
+3. **Robot Arm Control (Arduino Mega + Dynamixel Shield)** — Inverse kinematics converts 3D target positions into joint angles, then Dynamixel AX-12A motors execute the motion.
+
+```
+YOLO V4 (Python) → Arduino Uno → Arduino Mega → Dynamixel Shield → 4-DOF Robot Arm
+                                                     ↑
+                                             HC-SR04 Ultrasonic Sensor
+```
+
+---
+
+## Hardware Design
+
+### Robot Arm Structure
+
+The manipulator is a **planar RRR configuration (4-DOF total)** with:
+
+| Joint | Motor | Count |
+|-------|-------|-------|
+| Base (rotation) | AX-12A | 1 |
+| Shoulder | AX-12A | 2 (parallel) |
+| Elbow | AX-12A | 2 (parallel) |
+| Wrist / Gripper | AX-12A | 1 |
+
+All structural parts were **3D-printed in PLA** using a custom design in UG NX. The shoulder and elbow each use two motors in parallel to meet the required torque budget.
+
+### Torque Calculation
+
+Assuming the manipulator is horizontal (worst case):
+
+```
+τ_total = 4.36 N × 0.518 m + 0.589 N × 0.363 m
+        + 1.079 N × 0.214 m + 0.686 N × 0.154 m
+        = 2.81 N·m
+```
+
+The AX-12A provides **1.50 N·m stall torque at 12V**, so two motors per joint satisfies the requirement.
+
+### Gripper
+
+A 3-finger open-source gripper compatible with AX-12A was adapted. Gripper length is **8.2 cm** — designed to accommodate standard beverage cans (avg. diameter ~5 cm). All finger joints use worm-gear mechanisms printed in PLA for compact, reliable gripping.
+
+### Showcase & Storage
+
+- **Showcase**: UG NX–modeled with a **10° draft angle** so cans slide forward automatically when one is removed. Holds 6 cans.
+- **Storage unit**: Modeled and fabricated by a carpentry workshop from CAD drawings.
+
+---
+
+## Software Design
+
+### YOLO V4 Object Detection
+
+YOLO V4 was selected for its real-time performance on a single consumer GPU. The model identifies can types (Coca-Cola / Pepsi) with >90% confidence and outputs bounding box center coordinates `(center_x, center_y)`.
+
+To improve detection accuracy, the green conveyor belt background was converted to white using HSV color masking in OpenCV before feeding frames to the detector.
+
+### Inverse Kinematics
+
+3D Cartesian target positions were simplified to a **2D planar problem** based on a referenced paper (DBpia, 2014). The equations implemented in MATLAB and then ported to Arduino are:
+
+```
+R'  = R - L4·cos(Φ)
+Z'  = Z - BASE_HEIGHT + L4·sin(Φ)
+A   = √(Z'² + R'²) / 2
+θ1  = atan2(Y, X)                          # Base rotation
+θ3  = asin(A / L3) × 2                     # Elbow angle
+θ2  = atan2(Z', R') + (180° - θ3) / 2     # Shoulder angle
+θ4  = 180° - Φ - θ2 - θ3                  # Wrist angle
+```
+
+**12 waypoints** were pre-calculated in MATLAB and hardcoded as motion sequences in Arduino.
+
+### System Flow
+
+```
+[Start]
+   ↓
+Conveyor ON → Ultrasonic sensor detects can?
+   ↓ YES
+Conveyor OFF → Robot arm receives coordinates?
+   ↓ YES
+Execute pick-and-place → Conveyor OFF → [End]
+```
+
+---
+
+## Results
+
+The system successfully demonstrated automatic can grasping and restocking in a mock walk-in environment. The robot arm moved cans from the storage unit to the showcase reliably within the predefined 12-path trajectory.
+
+**Known Issue:** Real-time coordinate data transmission from OpenCV (Python) to the Arduino failed during the final demo. The robot therefore operated on pre-defined fixed coordinates rather than live detection feedback.
+
+**Planned Improvements:**
+- PID control for smoother, safer motor actuation
+- Higher-torque motors to support camera mounting at a better viewpoint
+- Reliable serial communication protocol to close the YOLO → robot arm loop
+
+---
+
+## References
+
+- Blog Series: [studypenggu.tistory.com](https://studypenggu.tistory.com/2)
+- Inverse Kinematics Reference: DBpia NODE06603273 (이경문, 이강희, 2014)
+- Dynamixel AX-12A: [emanual.robotis.com](https://emanual.robotis.com/docs/kr/dxl/ax/ax-12a/)
