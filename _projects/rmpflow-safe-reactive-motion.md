@@ -7,6 +7,23 @@ categories: [Robotics, HRI, Sensor, ROS, RMPflow]
 featured_image: "/assets/images/projects/rmpflow-hri/featured.png"
 github_url: ""
 demo_url: ""
+
+schematics:
+  - file: "/assets/images/projects/rmpflow-hri/bendable-sensor-pp.png"
+    title: "Bendable Sensor (Planar + Planar)"
+    description: "Mechanically Bendable Sensor Structure (Planar + Planar)"
+  - file: "/assets/images/projects/rmpflow-hri/bendable-sensor-pL.png"
+    title: "Bendable Sensor (Planar + Loop)"
+    description: "Mechanically Bendable Sensor Structure (Planar + Loop)"
+  - file: "/assets/images/projects/rmpflow-hri/gen3-sensor.png"
+    title: "GEN3 Bendable Sensor"
+    description: "GEN3 Bendable Sensor Structure and UR10 Integration"
+  - file: "/assets/images/projects/rmpflow-hri/RMP-FLOW-CONTROL.png"
+    title: "RMPflow Control Framework"
+    description: "RMPflow Based Control Framework with Proximity Sensor"
+
+video: "/assets/videos/rmpflow-hri/demo.mp4"
+
 ---
 
 ## Overview
@@ -155,6 +172,12 @@ $$X = a \cdot e^{b \cdot Y}$$
 
 The degradation in distance measurement reliability as the **S/N ratio** of the capacitive sensor signal decreases is quantified using a first-order Taylor approximation.
 The distance uncertainty arising from capacitive sensor noise and measurement variation is computed, and higher weights are assigned to estimates with lower uncertainty, yielding an optimally fused distance value with the ToF sensor.
+
+The constants *a* and *b* are dynamically estimated using **least squares** on the collected data pairs. Once determined, the inverse formula gives accurate distance:
+
+$$Y = \frac{1}{b} \cdot (\ln X - \ln a)$$
+
+This fusion approach linearizes the capacitive sensor output and eliminates the ToF near-range blind spot.
 
 <figure>
   <img src="/assets/images/projects/rmpflow-hri/Real-Time-Adaptive-Measurement-Model.png" alt="Real-Time Adaptive Measurement Model">
