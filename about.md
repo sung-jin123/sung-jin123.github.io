@@ -6,137 +6,107 @@ permalink: /about/
 
 <div class="hero-section" style="padding: 100px 0; background: var(--background-color); border-bottom: 1px solid var(--border-color); text-align: center;">
     <div class="container">
-        <h1 style="font-size: var(--font-size-3xl); letter-spacing: -0.02em; color: var(--text-primary);">About MESGRO</h1>
-        <p style="color: var(--text-secondary); opacity: 0.7; max-width: 600px; margin: 0 auto; font-weight: 300;">An open-source portfolio template designed specifically for robotics and mechatronics engineers to showcase their innovative projects.</p>
+        <h1 style="font-size: var(--font-size-3xl); letter-spacing: -0.02em; color: var(--text-primary);">SungJin Han (한성진)</h1>
+        <p style="color: var(--text-secondary); opacity: 0.7; max-width: 600px; margin: 0 auto; font-weight: 300;">M.S. Student in Intelligent Robotics · Sungkyunkwan University<br>
+        sungjinhan@g.skku.edu.</p>
     </div>
 </div>
 
 <div class="about-content">
     <div class="container">
-        
+
         <section class="about-section">
-            <h2>What is MESGRO?</h2>
-            <p>MESGRO (Mechatronics Engineering Showcase Gallery for Robotics Operations) is a comprehensive Jekyll template that enables engineers, researchers, and students to create stunning portfolios for their robotics and mechatronics projects.</p>
-            
-            <p>Built with modern web technologies and designed with user experience in mind, MESGRO provides everything you need to showcase your technical projects professionally and effectively.</p>
+            <h2>About Me</h2>
+            <p>I am an M.S. student at the Robotics Innovatory Lab, Sungkyunkwan University. My research focuses on real-time adaptive reactive control using bendable capacitive proximity sensors for safe Human-Robot Interaction.</p>
+            <p>I received my B.S. in Mechanical System Engineering from Hansung University (2023), where my thesis explored Automated logistics organization in unmanned convenience stores Design and build a deep learning-based 4DOF robot arm.</p>
         </section>
 
         <section class="about-section">
-            <h2>Key Features</h2>
+            <h2>Research Interests</h2>
             <div class="features-list">
                 <div class="feature-item">
-                    <h3><i class="fas fa-cube"></i> Interactive 3D Model Viewer</h3>
-                    <p>Display your mechanical designs, prototypes, and 3D printed parts with an interactive viewer that supports STL, OBJ, GLTF, and GLB formats. Users can rotate, zoom, and explore your designs in detail.</p>
+                    <h3><i class="fas fa-robot"></i> Reactive Motion Control</h3>
+                    <p>Real-time adaptive control frameworks for safe robot operation in dynamic environments.</p>
                 </div>
-                
+
                 <div class="feature-item">
-                    <h3><i class="fas fa-microchip"></i> Circuit Schematic Display</h3>
-                    <p>Showcase your electrical designs with zoomable and pannable circuit diagrams. Perfect for displaying PCB layouts, wiring diagrams, and system architectures.</p>
+                    <h3><i class="fas fa-hands"></i> Robotic Sensor Fusion for HRI</h3>
+                    <p>Sensor fusion approaches enabling safe and intuitive Human-Robot Interaction.</p>
                 </div>
-                
+
                 <div class="feature-item">
-                    <h3><i class="fas fa-code"></i> Code Integration</h3>
-                    <p>Present your source code with syntax highlighting, tabbed interfaces, and download links. Supports multiple programming languages including C/C++, Python, Arduino, and more.</p>
+                    <h3><i class="fas fa-microchip"></i> Proximity Sensor Based Robot Control</h3>
+                    <p>Bendable capacitive proximity sensors for detecting and responding to nearby objects and humans.</p>
                 </div>
-                
+
                 <div class="feature-item">
-                    <h3><i class="fas fa-mobile-alt"></i> Responsive Design</h3>
-                    <p>Your portfolio looks great on all devices - from desktop computers to mobile phones. The responsive design ensures optimal viewing experience across all screen sizes.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <h3><i class="fab fa-github"></i> GitHub Pages Compatible</h3>
-                    <p>Deploy your portfolio for free using GitHub Pages. The template is fully compatible with Jekyll and GitHub's hosting platform.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <h3><i class="fas fa-palette"></i> Customizable Theme</h3>
-                    <p>Dark and light themes with easy customization options. Modify colors, fonts, and layouts to match your personal brand.</p>
+                    <h3><i class="fas fa-broadcast-tower"></i> Proximity Sensor Utilizing Field Sensing</h3>
+                    <p>Electric field-based proximity sensing for non-contact detection in robotics applications.</p>
                 </div>
             </div>
         </section>
 
         <section class="about-section">
-            <h2>Perfect For</h2>
+            <h2>Education</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-graduation-cap"></i> M.S. in Intelligent Robotics</h3>
+                    <p><strong>Sungkyunkwan University</strong> · Sep. 2024 – Present · Suwon, Korea</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-university"></i> B.S. in Mechanical System Engineering</h3>
+                    <p><strong>Hansung University</strong> · Mar. 2017 – Aug. 2023 · Seoul, Korea<br>
+                    Thesis: <em>Automated logistics organization in unmanned convenience stores Design and build a deep learning-based 4DOF robot arm</em></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Publications</h2>
+            <div class="getting-started-steps">
+                <ol>
+                    <li><strong>한성진</strong>, 강현창, 성혁제, 송영빈, 최혁렬, <em>"Real-Time Adaptive Reactive Control Framework Using a Bendable Capacitive Proximity Sensor"</em>, <em>한국로봇종합학술대회 (KRcC 2026)</em>, Pyeongchang, Korea, Feb. 2026 — Poster</li>
+                    <li>송영빈, 강현창, 성혁제, <strong>한성진</strong>, 최혁렬, <em>"Development of a Capacitive Proximity Sensor Platform for Safe Human–Robot Interaction"</em>, <em>한국로봇종합학술대회 (KRcC 2026)</em>, Pyeongchang, Korea, Feb. 2026 — Poster</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Patents</h2>
+            <div class="getting-started-steps">
+                <ol>
+                    <li>[출원] 임홍식, 강현창, <strong>한성진</strong>, 이현용, 이윤행, "벤더블 센서 플랫폼", KR-Application No. 10-2024-0202353</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Awards</h2>
             <div class="perfect-for-grid">
                 <div class="perfect-for-item">
-                    <h4>Students</h4>
-                    <p>Showcase your coursework, capstone projects, and research work to potential employers and graduate schools.</p>
+                    <h4>한성대학교 총장상 (공로상)</h4>
+                    <p>Hansung University · Aug. 2023</p>
                 </div>
-                
                 <div class="perfect-for-item">
-                    <h4>Engineers</h4>
-                    <p>Display your professional projects, innovations, and technical expertise to colleagues and industry peers.</p>
-                </div>
-                
-                <div class="perfect-for-item">
-                    <h4>Researchers</h4>
-                    <p>Present your research findings, prototypes, and experimental setups with rich media and detailed documentation.</p>
-                </div>
-                
-                <div class="perfect-for-item">
-                    <h4>Hobbyists</h4>
-                    <p>Share your maker projects, Arduino creations, and DIY robotics builds with the maker community.</p>
+                    <h4>한성 학술소모임 지원프로그램</h4>
+                    <p>Hansung University · Dec. 2022</p>
                 </div>
             </div>
         </section>
 
         <section class="about-section">
-            <h2>Built With</h2>
+            <h2>Skills</h2>
             <div class="tech-stack">
-                <div class="tech-item">
-                    <i class="fab fa-html5"></i>
-                    <span>HTML5</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-css3-alt"></i>
-                    <span>CSS3/SCSS</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-js-square"></i>
-                    <span>JavaScript</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fas fa-gem"></i>
-                    <span>Jekyll</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fas fa-cube"></i>
-                    <span>Three.js</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub Pages</span>
-                </div>
+                <div class="tech-item"><i class="fas fa-drafting-compass"></i><span>Inventor</span></div>
+                <div class="tech-item"><i class="fas fa-drafting-compass"></i><span>UG NX</span></div>
+                <div class="tech-item"><i class="fas fa-microchip"></i><span>Altium</span></div>
+                <div class="tech-item"><i class="fas fa-code"></i><span>STM32CubeIDE</span></div>
+                <div class="tech-item"><i class="fas fa-robot"></i><span>ROS1, ROS2</span></div>
+                <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="tech-item"><i class="fas fa-code"></i><span>C / C++</span></div>
+                <div class="tech-item"><i class="fas fa-calculator"></i><span>MATLAB</span></div>
+                <div class="tech-item"><i class="fas fa-wave-square"></i><span>LabVIEW</span></div>
             </div>
-        </section>
-
-        <section class="about-section">
-            <h2>Getting Started</h2>
-            <p>Ready to create your own robotics portfolio? Get started with MESGRO in just a few steps:</p>
-            
-            <ol class="getting-started-steps">
-                <li><strong>Fork the Repository:</strong> Start by forking the MESGRO repository to your GitHub account.</li>
-                <li><strong>Customize Your Content:</strong> Add your projects, update the configuration, and personalize the design.</li>
-                <li><strong>Enable GitHub Pages:</strong> Turn on GitHub Pages in your repository settings to publish your portfolio.</li>
-                <li><strong>Share Your Work:</strong> Your portfolio is now live and ready to share with the world!</li>
-            </ol>
-            
-            <div class="cta-buttons">
-                <a href="https://github.com/aojedao/MESGRO" class="btn-primary" target="_blank">
-                    <i class="fab fa-github"></i> Get Started on GitHub
-                </a>
-                <a href="{{ '/projects/' | relative_url }}" class="btn-secondary">
-                    <i class="fas fa-eye"></i> View Example Projects
-                </a>
-            </div>
-        </section>
-
-        <section class="about-section">
-            <h2>Contributing</h2>
-            <p>MESGRO is an open-source project and we welcome contributions from the community. Whether you're fixing bugs, adding new features, or improving documentation, your help is appreciated.</p>
-            
-            <p>Check out our <a href="https://github.com/aojedao/MESGRO/blob/main/CONTRIBUTING.md" target="_blank">Contributing Guide</a> to get started.</p>
         </section>
 
     </div>
