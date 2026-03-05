@@ -9,7 +9,7 @@ github_url: ""
 demo_url: ""
 
 schematics:
-  - file: "/assets/images/projects/capstone-design-4dof/robot-photo.png"
+  - file: "/assets/images/projects/capstone-design-4dof/robot-photo_1.png"
     title: 4-DOF Robot Arm and YOLO V4 Object Detection Result
     description: "4-DOF Robot Arm Final Assembly, YOLO V4 Object Detection (Coca-Cola / Pepsi)"
   - file: "/assets/images/projects/capstone-design-4dof/system-flow.png"
