@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "RMPflow-Based Safe Reactive Motion Planning Using Proximity Sensors for Human-Robot Interaction"
-description: "벤더블 정전용량 근접 센서의 단계별 개발과 RMPflow 기반 실시간 반응형 안전 제어 프레임워크 연구 (석사 세미나 1~4차)"
+description: "Step-by-step development of a bendable capacitive proximity sensor and a real-time reactive safety control framework based on RMPflow (M.S. Seminars 1–4)"
 date: 2026-01-30
 categories: [Robotics, HRI, Sensor, ROS, RMPflow]
 featured_image: "/assets/images/projects/rmpflow-hri/featured.png"
@@ -9,19 +9,20 @@ github_url: ""
 demo_url: ""
 ---
 
-## 연구 개요
+## Overview
 
-본 연구는 **인간-로봇 상호작용(HRI)** 환경의 안전한 협동 작업을 위해, 평면 및 곡면 모두에 부착 가능한 **벤더블 정전용량 근접 센서**를 단계적으로 개발하고, 최종적으로 **RMPflow** 기반 반응형 모션 제어 프레임워크와 통합한 석사과정 연구입니다.
+This research develops a **bendable capacitive proximity sensor** that can be mounted on both flat and curved surfaces, and integrates it with an **RMPflow**-based reactive motion control framework for safe **Human-Robot Interaction (HRI)** — conducted throughout M.S. seminars 1 to 4.
 
-사람과 로봇의 협업의 레벨이 높아질수록 신뢰할 수 있는 HRC 기술 개발이 필수적입니다. 따라서 로봇이 외부 환경을 인식할 수 있는 센서 기술이 강조되고 있습니다. 
-기존 안전 센서들은 사각지대, 근거리 감지 한계, 곡면 부착 불가 등의 문제를 갖습니다. 
+As the level of human-robot collaboration increases, the development of reliable HRC technologies becomes essential. Accordingly, sensor technologies that enable robots to perceive their surrounding environment are receiving growing attention.
+Conventional safety sensors suffer from blind spots, limited short-range detection, and inability to conform to curved surfaces.
+
 ---
 
-## 1. Mechanically Bendable Sensor Structure (Planar + Planar) 개발
+## 1. Mechanically Bendable Sensor Structure (Planar + Planar)
 
-### 설계 배경
+### Design Background
 
-정전용량형 센서는 전기장을 이용해 물체의 접근을 감지합니다. Self-Capacitance 방식의 원리는 아래와 같습니다:
+Capacitive sensors detect the approach of objects using an electric field. The principle of the Self-Capacitance method is as follows:
 
 $$C \approx \varepsilon_0 \varepsilon_r \frac{2 A_1 A_2}{A_1 + A_2} \cdot \frac{1}{d}$$
 
@@ -30,199 +31,219 @@ $$C \approx \varepsilon_0 \varepsilon_r \frac{2 A_1 A_2}{A_1 + A_2} \cdot \frac{
   <figcaption>Single-Ended Capacitance Principle</figcaption>
 </figure>
 
-거리 $d$가 감소할수록 정전용량 $C$가 증가합니다. 여기에 **Kerf 패턴**을 전극에 적용해 Flat ↔ Bending 자유 변환이 가능한 벤더블 구조를 최초 설계했습니다.
+As distance $d$ decreases, capacitance $C$ increases.
 
-### 구조 구성
+### Structure
 
-- **Electrode (1)**: Planar-Type (상단)
-- **Electrode (2)**: Planar-Type (하단)
-- **Shield Electrode**: 외부 노이즈 차폐
-- **ToF Sensor × 2**: 거리 보정용 융합 센서
-- **MCU + FDC2214**: 정전용량 측정 및 CAN 전송
+By applying a **Kerf pattern** to the electrodes, the sensor achieves a bendable structure that can freely transition between Flat and Bending configurations.
+
+- **Electrode (1)**: Planar-Type (top)
+- **Electrode (2)**: Planar-Type (bottom)
+- **Shield Electrode**: External noise shielding
+- **ToF Sensor × 2**: Fusion sensor for distance correction
+- **MCU + FDC2214**: Capacitance measurement and CAN transmission
 
 <figure>
-  <img src="/assets/images/projects/rmpflow-hri/capacitive-principle.png" alt="Single-Ended Capacitance Principle">
-  <figcaption>Single-Ended Capacitance Principle</figcaption>
+  <img src="/assets/images/projects/rmpflow-hri/bendable-sensor-pp.png" alt="Mechanically Bendable Sensor Structure (Planar + Planar)">
+  <figcaption>Mechanically Bendable Sensor Structure (Planar + Planar)</figcaption>
 </figure>
 
-### 한계점
+### Limitations
 
-두 전극이 동일한 Planar 구조이므로 Bending 시 전극 간 **정전용량 불균형(Capacitance Imbalance)** 이 발생하여 정확한 거리 추정이 어려웠습니다.
+Since both electrodes share the same Planar structure, bending causes **Capacitance Imbalance** between the two electrodes, making accurate distance estimation difficult.
 
-| 지표 | Planar | Loop |
-|------|--------|------|
-| 표준 편차 | 104.3 mm | 120.2 mm |
-| RMSE | 111.0 mm | 154.8 mm |
-| 최대 감지 범위 | 100 mm | 100 mm |
-
----
-
-## 2. Mechanically Bendable Sensor Structure (Planar + Loop) 개발
-
-### 전극 설계 변경
-
-Planar + Planar 구조의 불균형 문제를 해결하기 위해 하단 전극을 **Loop-Type**으로 교체했습니다. Loop 전극은 중앙이 비어 있어 상단 Planar 전극과의 전기장 중첩 면적이 줄고, 두 전극 간 정전용량 불균형이 감소합니다.
-
-### ToF 커버 고정 방식 비교
-
-Loop-Type 전극 도입과 함께 ToF 센서 고정 구조도 3종 비교·검증했습니다:
-
-| 방식 | 특징 |
-|------|------|
-| Horizontal Fix Type | 가로 방향 고정, 안정적 |
-| Line Fix Type | 선형 고정, 경량 |
-| Vertical Fix Type | 세로 방향 고정 |
-
-### 검증 결과 및 한계
-
-두 전극(Planar / Loop)의 응답 경향이 정합적으로 동작함을 확인했으나, Bending 시 **전극 형상 변화에 따른 재보정**이 필요하고 **전극 적층으로 인한 단거리 정확도 저하** 문제가 남았습니다.
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/capacitance-imbalance.png" alt="capacitance-imbalance">
+  <figcaption>Capacitance Imbalance</figcaption>
+</figure>
 
 ---
 
-## 3. [GEN3] Bendable Sensor 개발
+## 2. Mechanically Bendable Sensor Structure (Planar + Loop)
 
-### 개선 목표
+### Electrode Redesign
 
-| 항목 | 이전 세대 한계 | Gen3 개선 방향 |
-|------|--------------|--------------|
-| 전극 중첩 | 단거리 정확도 저하 | 전극 분리 재설계 |
-| 제조성 | 1 mm 간격 패턴 제조 불가 | 제조 가능 패턴으로 수정 |
-| 크기 | 150×150 mm (로봇 통합 불가) | **190×80 mm** 로 최적화 |
-| Kerf 구조 | 유지 필요 | Flat-Bending 구조 보존 |
+To resolve the imbalance of the Planar + Planar structure, the bottom electrode was replaced with a **Loop-Type**. The Loop electrode has an open center, which reduces the overlapping area of the electric field with the top Planar electrode, thereby decreasing the capacitance imbalance between the two electrodes.
 
-### 전극 면적 최적화
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/Change-electrode.png" alt="Change-electrode">
+  <figcaption>Change Electrode (Planar → Loop)</figcaption>
+</figure>
 
-다양한 샘플 비교를 통해 감지 성능과 제조성을 동시에 만족하는 **190×80 mm** 크기를 최종 선정했습니다.
+### ToF Cover Fixation Comparison
 
-### UR10 전신 통합
+Since the Loop-Type electrode could not fix the ToF sensor, the top cover was redesigned. Three fixation types were evaluated:
 
-UR10의 **상완(Upper Arm)** 과 **하완(Lower Arm)** 에 각 4개씩 총 **8개의 Gen3 센서 모듈**을 장착해 전방위 근접 감지 커버리지를 구축했습니다.
+| Type | Description |
+|------|-------------|
+| Horizontal Fix Type | Horizontal fixation, stable |
+| Line Fix Type | Linear fixation, lightweight |
+| Vertical Fix Type | Vertical fixation |
 
-### 성능 비교 (이전 세대 대비)
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/top-cover.png" alt="Design Loop-Type Electrode Top Cover">
+  <figcaption>Design Loop-Type Electrode Top Cover</figcaption>
+</figure>
 
-| 지표 | 이전 세대 | **Gen3** | 개선 |
-|------|----------|---------|------|
-| 표준 편차 | ~104–120 mm | **~35 mm** | ~70% ↑ |
+### Validation Results and Limitations
+
+Measurement of the capacitance variation confirmed that the Capacitance Imbalance issue was resolved.
+However, as shown below, the maximum detection range of approximately 100 mm was insufficient for mounting on a real manipulator to detect and avoid objects, leading to a plan for full redesign.
+
+| Metric | Mechanically Bendable Sensor |
+|--------|------------------------------|
+| Standard Deviation | ~104–120 mm |
+| RMSE | ~111–155 mm |
+| Maximum Detection Range | 100 mm |
+
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/Performance-Evaluation-of-Bendable-Sensor.png" alt="Validation Mechanically bendable sensor">
+  <figcaption>Validation of Mechanically Bendable Sensor</figcaption>
+</figure>
+
+---
+
+## 3. [GEN3] Bendable Sensor Development
+
+### Improvement Goals
+
+| Item | Previous Generation Limitation | Gen3 Improvement |
+|------|-------------------------------|------------------|
+| Electrode Overlap | Reduced accuracy at short distances | Separated electrode redesign |
+| Manufacturability | 1 mm spacing pattern not manufacturable | Modified to manufacturable pattern |
+| Size | 150×150 mm (not integrable on robot) | Optimized to **190×80 mm** |
+| Kerf Structure | Must be preserved | Flat-Bending structure maintained |
+
+### Electrode Size Optimization
+
+Through comparison of various samples, **190×80 mm** was selected as the final size, satisfying both sensing performance and manufacturability.
+
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/Optimizing-Electrode-Design-via-Area-Comparison.png" alt="Optimizing Electrode Design via Area Comparison">
+  <figcaption>Optimizing Electrode Design via Area Comparison</figcaption>
+</figure>
+
+### Whole-Body Integration on UR10
+
+A total of **8 Gen3 sensor modules** were mounted on the UR10 — 4 on the **Upper Arm** and 4 on the **Lower Arm** — establishing full-coverage proximity sensing.
+
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/UR10-sensor-integration.png" alt="GEN3 Bendable Sensor Configuration for UR10">
+  <figcaption>GEN3 Bendable Sensor Configuration for UR10</figcaption>
+</figure>
+
+### Performance Comparison (vs. Previous Generation)
+
+| Metric | Previous Gen | **Gen3** | Improvement |
+|--------|-------------|---------|-------------|
+| Standard Deviation | ~104–120 mm | **~35 mm** | ~70% ↑ |
 | RMSE | ~111–155 mm | **~35–37 mm** | ~75% ↑ |
-| 최대 감지 범위 | 100 mm | **200 mm** | 2배 ↑ |
+| Maximum Detection Range | 100 mm | **200 mm** | 2× ↑ |
 
 ---
 
 ## 4. Real-Time Adaptive Measurement Model
 
-### 정전용량-거리 비선형성 문제
+### Nonlinearity Problem and Fusion Correction Algorithm
 
-정전용량 센서는 거리와 정전용량 간 **비선형 관계**를 가져 정확한 거리 추정이 어렵습니다. ToF 센서는 정확도가 높지만 시야각이 좁고 근거리 사각지대가 존재합니다. 두 센서를 융합해 비선형성을 실시간으로 보정하는 모델을 제안합니다.
+Capacitive sensors have a **nonlinear relationship** between distance and capacitance, making accurate distance estimation difficult. ToF sensors offer high accuracy but have a narrow field of view and blind spots at short range. A model that fuses both sensors to correct nonlinearity in real time is proposed.
 
-### 융합 보정 알고리즘
+Data is received from both the **capacitive sensor** and the **ToF sensor**, where the ToF distance is used as the reference distance.
+A distance conversion model is constructed using **(X: capacitance, Y: ToF distance)** data pairs, and the coefficients $a$, $b$ are updated in real time to output accurate distance values.
 
-두 센서의 중첩 시야각에서 수집한 데이터 쌍 $(X_{ToF},\, C)$ 를 **이중 지수 방정식**으로 근사합니다:
+$$X = a \cdot e^{b \cdot Y}$$
 
-$$\hat{d} = a \cdot e^{\,b \cdot C} + c \cdot e^{\,d' \cdot C}$$
+The degradation in distance measurement reliability as the **S/N ratio** of the capacitive sensor signal decreases is quantified using a first-order Taylor approximation.
+The distance uncertainty arising from capacitive sensor noise and measurement variation is computed, and higher weights are assigned to estimates with lower uncertainty, yielding an optimally fused distance value with the ToF sensor.
 
-최소제곱법으로 계수 $a, b, c, d'$ 를 **동적으로 추정**하며, Bending 등 구조 변화 시에도 자동 재보정됩니다.
-
-### 시스템 파이프라인
-
-```
-FDC2214 (정전용량 측정)
-        ↓
-   STM32 MCU (100 Hz, CAN 전송)
-        ↓
-ROS Distance Fitting Node
-(ToF 융합 + 적응형 계수 추정)
-        ↓
-  선형화된 거리 데이터 출력
-```
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/Real-Time-Adaptive-Measurement-Model.png" alt="Real-Time Adaptive Measurement Model">
+  <figcaption>Real-Time Adaptive Measurement Model</figcaption>
+</figure>
 
 ---
 
 ## 5. RMPflow Based Control Framework with Proximity Sensor
 
-### RMPflow 개요
+### RMPflow Overview
 
-**RMPflow** (Riemannian Motion Policy flow)는 복수의 반응형 정책을 Computational Graph로 합성하여 **실시간 단일 관절 가속도 명령**을 생성하는 프레임워크입니다.
+**RMPflow** (Riemannian Motion Policy flow) is a framework that combines multiple policies to generate **real-time single joint acceleration commands**.
 
-> *Cheng et al., RMPflow: A Computational Graph for Automatic Motion Policy Generation, WAFR 2019*
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/RMP-FLOW.png" alt="RMP Flow Framework">
+  <figcaption>RMP Flow Framework</figcaption>
+</figure>
 
-### 적용 정책 구성
+### Applied Policy Composition
 
-| 정책 | 역할 |
-|------|------|
-| **Target RMP** | 목표 지점 도달 |
-| **Obstacle Avoidance RMP** | 장애물 회피 |
-| **Joint Limit RMP** | 관절 한계 보호 |
-| **Joint Velocity Limit RMP** | 속도 제한 |
-| **Magnetic RMP** | 경로 유도 |
+| Policy | Role |
+|--------|------|
+| **Target RMP** | Reaching the target position |
+| **Obstacle Avoidance RMP** | Obstacle avoidance |
+| **Joint Limit RMP** | Joint limit protection |
+| **Joint Velocity Limit RMP** | Velocity limiting |
+| **Magnetic RMP** | Path guidance |
 
-RMPflow는 위 5개 정책을 합성하여 단일 관절 가속도 명령으로 해석하고, 이를 Position-Controlled System에 전달합니다.
+RMPflow composes the above 5 policies into a single joint acceleration command and delivers it to the Position-Controlled System.
 
-### 제어 아키텍처
-
-```
-근접 센서 8모듈 (UR10 상완/하완)
-        ↓  CAN Bus (100 Hz)
-     STM32 MCU
-        ↓  ROS Topic
- Distance Fitting Node
- (ToF 융합 + 적응형 선형화)
-        ↓
- 3D Point Transformation
-        ↓
-    RMPflow Engine
- (5개 정책 합성 → 단일 가속도)
-        ↓
- Position-Controlled System (UR10)
-```
-
-### 실험 결과
-
-- 2개 센서 모듈 기반 RMPflow 실험에서 **장애물 회피 반응 동작** 확인
-- 장애물 접근 시 임계값 이내 거리가 감지되는 순간 **모든 관절 속도가 즉각 0으로 수렴**하는 비상정지 동작 검증
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/RMP-FLOW-Policy.png" alt="RMP Flow Policy">
+  <figcaption>RMP Flow Policy</figcaption>
+</figure>
 
 ---
 
 ## 6. Self-Detection Effects Before and After Compensation
 
-### 문제 정의
+### Problem Definition
 
-로봇이 움직일 때 **관절 회전에 의한 전기장 변화**가 센서 값에 노이즈로 유입됩니다. 이 **자기 감지(Self-Detection)** 노이즈는 실제 장애물 신호와 혼동되어 오작동을 유발할 수 있습니다.
+When the robot moves, changes in the electric field caused by joint rotation introduce noise into the sensor readings. In addition, **Self-Detection** noise arising from mutual detection between adjacent sensors can be mistaken for actual obstacle signals, potentially causing malfunction.
 
-### 딥러닝 기반 보상 모델
+### Learning-Based Compensation Model
 
-- **입력**: 관절 각도 $q \in \mathbb{R}^{16}$, 관절 속도 $\dot{q} \in \mathbb{R}^{16}$
-- **구조**: FC 128 → 256 → 256 → 16 (활성화: ReLU)
-- **출력**: 예측된 자기 감지 값 $\hat{y}_{pred}$
+- **Input**: Joint angle $q \in \mathbb{R}^{16}$, joint velocity $\dot{q} \in \mathbb{R}^{16}$
+- **Architecture**: FC 128 → 256 → 256 → 16 (Activation: ReLU)
+- **Output**: Predicted self-detection value $\hat{y}_{pred}$
 
-보상 공식:
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/SD.png" alt="SD">
+  <figcaption>Learning-Based Self-Detection Modeling</figcaption>
+</figure>
+
+Compensation formula:
 
 $$y_{comp} = y_{raw} - (\hat{y}_{pred} - \text{BASE})$$
 
-데이터셋은 **10개의 계획 궤적 × 3가지 속도 설정** 조합으로 수집했습니다.
+The dataset was collected using **10 planned trajectories × 3 speed settings**.
 
-### 보상 전후 성능 비교
+### Performance Comparison Before and After Compensation
 
-| 지표 | 보상 전 | 보상 후 | 개선율 |
-|------|--------|--------|--------|
-| 표준 편차 | 4,003.86 | 710.53 | **82.25% ↑** |
+| Metric | Before | After | Improvement |
+|--------|--------|-------|-------------|
+| Standard Deviation | 4,003.86 | 710.53 | **82.25% ↑** |
 | RMSE | 5,146.29 | 3,712.88 | 27.85% ↑ |
 | Peak-to-Peak | 13,372.00 | 5,656.00 | **57.70% ↑** |
 
-로봇 자체 동작에 의해 유발된 자기 감지 노이즈가 보상 후 **효과적으로 제거**됨을 확인했습니다.
+<figure>
+  <img src="/assets/images/projects/rmpflow-hri/SD-RESULT.png" alt="SD-RESULT">
+  <figcaption>Self-Detection Compensation Result</figcaption>
+</figure>
+
+Self-detection noise induced by the robot's own motion was **effectively eliminated** after compensation.
 
 ---
 
-## 향후 연구 계획
+## Future Work
 
-- 근접 센서 특성에 맞는 **RMP 파라미터 튜닝** 최적화
-- Radar 및 Vision 센서 추가 융합을 통한 **End-Effector 반응 모션 강화**
-- 인간과 안전 거리를 유지하며 작업을 지속하는 **Avoidance Control 프레임워크** 확장
+- Optimize **RMP parameter tuning** tailored to proximity sensor characteristics
+- Enhance **End-Effector reactive motion** by integrating additional Radar and Vision sensors
+- Extend the framework toward an **Avoidance Control framework** that allows the robot to maintain a safe distance from humans while continuing its task
 
 ---
 
-## 참고문헌
+## References
 
-- Han, S., Kang, H., Sung, H., Song, Y., & Choi, H. R. (2025). A Real-Time Adaptive Reactive Control Framework Using a Bendable Capacitive Proximity Sensor. *한국로봇학회 (KROC)*.
+- H. Yim, "Reliable Proximity and Tactile Fusion Sensor Utilizing Field Sensing for Physical Human–Robot Interaction," Ph.D. dissertation, Dept. of Mechanical Engineering, Sungkyunkwan University, 2025.
 - Cheng, C.-A., et al. (2019). RMPflow: A Computational Graph for Automatic Motion Policy Generation. *WAFR*.
 - Wang, R., et al. (2024). A Smooth Velocity Transition Framework Based on Hierarchical Proximity Sensing for Safe HRI. *IEEE RA-L*.
 - Navarro, S., et al. (2022). Proximity Perception in Human-Centered Robotics: A Survey. *IEEE TRO, 38*(3), 1599–1620.
