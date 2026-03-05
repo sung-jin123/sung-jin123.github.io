@@ -8,6 +8,16 @@ featured_image: "/assets/images/projects/capstone-design-4dof/featured.jpg"
 github_url: ""
 demo_url: ""
 
+gallery:
+  - file: "/assets/images/projects/capstone-design-4dof/robot-photo.png"
+    description: "4-DOF Robot Arm Final Assembly"
+  - file: "/assets/images/projects/capstone-design-4dof/yolov4-detection.png"
+    description: "YOLO V4 Object Detection (Coca-Cola / Pepsi)"
+  - file: "/assets/images/projects/capstone-design-4dof/system-flow.png"
+    description: "System Flow Diagram"
+
+video: "/assets/videos/capstone-design-4dof/demo.mp4"
+
 ---
 
 ## Overview
@@ -88,28 +98,6 @@ $$A = \frac{\sqrt{Z'^2 + R'^2}}{2}$$
 | **θ₄** (Wrist) | $\theta_4 = 180° - \Phi - \theta_2 - \theta_3$ |
 
 **12 waypoints** were pre-calculated in MATLAB and hardcoded as motion sequences in Arduino.
-
-### System Flow
-
-````html
-<div class="mermaid">
-flowchart TD
-    A([🟢 Start]) --> B[Conveyor ON]
-    B --> C{Ultrasonic Sensor\nDetects Can?}
-    C -- No --> B
-    C -- Yes --> D[Conveyor OFF]
-    D --> E{Robot Arm\nReceives Coordinates?}
-    E -- No --> E
-    E -- Yes --> F[Execute Pick-and-Place]
-    F --> G[Conveyor OFF]
-    G --> H([🔴 End])
-
-    style A fill:#2ecc71,color:#fff
-    style H fill:#e74c3c,color:#fff
-    style C fill:#3498db,color:#fff
-    style E fill:#3498db,color:#fff
-    style F fill:#9b59b6,color:#fff
-</div>
 
 ---
 
