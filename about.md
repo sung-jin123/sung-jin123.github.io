@@ -81,6 +81,18 @@ permalink: /about/
         </section>
 
         <section class="about-section">
+        <h2>Research Projects</h2>
+        <div class="features-list">
+            <div class="feature-item">
+                <h3><i class="fas fa-industry"></i> 산학협력 프로젝트 · Sep. 2024 – Present</h3>
+                <p><strong>에이딘로보틱스 (Aidin Robotics)</strong> · Korea<br><br>
+                실시간 충돌상황 감지 및 회피 지능이 탑재된 로봇충돌 안전용 SoC 통합플랫폼 개발<br><br>
+                Development of proximity sensor module for Human-Robot Interaction</p>
+            </div>
+        </div>
+        </section>
+
+        <section class="about-section">
             <h2>Awards</h2>
             <div class="perfect-for-grid">
                 <div class="perfect-for-item">
@@ -94,17 +106,7 @@ permalink: /about/
             </div>
         </section>
 
-        <section class="about-section">
-        <h2>Research Projects</h2>
-        <div class="features-list">
-            <div class="feature-item">
-                <h3><i class="fas fa-industry"></i> 산학협력 프로젝트 · Sep. 2024 – Present</h3>
-                <p><strong>에이딘로보틱스 (Aidin Robotics)</strong> · Korea<br><br>
-                실시간 충돌상황 감지 및 회피 지능이 탑재된 로봇충돌 안전용 SoC 통합플랫폼 개발<br><br>
-                Development of proximity sensor module for Human-Robot Interaction</p>
-            </div>
-        </div>
-        </section>
+
 
         <section class="about-section">
             <h2>Skills</h2>
