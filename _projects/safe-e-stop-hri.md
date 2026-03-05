@@ -55,7 +55,7 @@ The sensor consists of two capacitive sensing layers with a **kerf pattern** app
 |---|---|
 | Electrode ADC 1 / 2 | Capacitive sensing electrodes |
 | ToF Sensor 1 / 2 | Time-of-Flight distance sensors |
-| Microcontroller | FDC2214 capacitive ASIC + MCU |
+| Microcontroller | FDC2214 capacitive ASIC + STM32F7RET6 |
 | Shield Electrode | EMI shielding layer |
 | Sensor Frame | Structural support frame |
 
@@ -63,7 +63,7 @@ The sensor consists of two capacitive sensing layers with a **kerf pattern** app
 - **Flat ↔ Bending** conversion without additional hardware changes
 - Mountable on **AMR** and **Manipulator** surfaces
 - Stable sensing range of approximately **200 mm**
-- Signal preprocessed on MCU and streamed via **CAN bus** to ROS2
+- Sensor signals are acquired via the **I2C interface**, converted into distance estimates within the **MCU**, and subsequently streamed to **ROS2** via the **CAN bus**.
 
 ---
 
@@ -71,13 +71,13 @@ The sensor consists of two capacitive sensing layers with a **kerf pattern** app
 
 Capacitive sensors have nonlinearity between capacitance and distance. ToF sensors have blind spots at close range. We combine both to resolve each other's weaknesses.
 
-Collected data pairs *(X: capacitance, Y: ToF distance)* are fitted to an exponential model:
+Collected data pairs *(X: capacitance, Y: ToF distance)* are fitted to an double exponential model:
 
-**X = a · e^(b·Y)**
+$$X = a \cdot e^{b \cdot Y}$$
 
 The constants *a* and *b* are dynamically estimated using **least squares** on the collected data pairs. Once determined, the inverse formula gives accurate distance:
 
-**Y = (1/b) · (ln X − ln a)**
+$$Y = \frac{1}{b} \cdot (\ln X - \ln a)$$
 
 This fusion approach linearizes the capacitive sensor output and eliminates the ToF near-range blind spot.
 
@@ -118,7 +118,7 @@ When an obstacle enters the safety threshold distance:
 | Emergency stop response | Joint velocities → 0 immediately upon threshold crossing |
 | Platform compatibility | Manipulator + AMR |
 
-Experiments with quintic-polynomial trajectories confirmed that **joint velocities converged to zero** the moment an obstacle was detected within the threshold distance — demonstrating practical real-time safety performance for HRI environments.
+Experiments with quintic polynomial trajectories confirmed that **joint velocities converged to zero** the moment an obstacle was detected within the threshold distance demonstrating practical real time safety performance for HRI environments.
 
 ---
 
@@ -127,12 +127,6 @@ Experiments with quintic-polynomial trajectories confirmed that **joint velociti
 > **한성진**, 강현창, 성혁제, 송영빈, 최혁렬,
 > "벤더블 정전용량 기반 근접센서 로봇의 실시간 적응형 반응 제어 프레임워크,"
 > *한국로봇종합학술대회 (KRcC 2026)*, Pyeongchang, Korea, Feb. 2026 — **Poster**
-
----
-
-## Acknowledgement
-
-본 연구는 산업통상자원부 및 한국산업기술기획평가원 (차세대 지능형 반도체 기술 개발사업) 사업의 연구비 지원에 의한 연구임 (RS-2024-00407393)
 
 ---
 
