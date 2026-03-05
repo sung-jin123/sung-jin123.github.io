@@ -11,16 +11,12 @@ excerpt: "실시간 충돌상황 감지 및 회피 지능이 탑재된 로봇충
 schematics:
   - file: "/assets/images/projects/soc-platform/sensor_structure.png"
     title: "Proximity Sensor Module Structure"
-    description: "근접센서 통합 플랫폼 기본 구조 및 Layer 구성 (Capacitive Electrode, Active Shield, Dielectric Layer, Grounded Shield)"
+    description: "근접센서 통합 플랫폼 기본 구조 및 Layer 구성"
   - file: "/assets/images/projects/soc-platform/asic_hw.png"
     title: "ASIC-Applied Sensor H/W Prototype"
     description: "개발 ASIC(NXA3110)을 적용한 모바일 로봇용 및 매니퓰레이터용 근접센서 모듈 H/W 시작품"
-  - file: "/assets/images/projects/soc-platform/algorithm.png"
-    title: "Collision Safety Intelligence Algorithm"
-    description: "충돌안전 intelligence 알고리즘 및 Intelligence Safety Framework (Precaution / Warning / Emergency Stop)"
-  - file: "/assets/images/projects/soc-platform/result.png"
-    title: "Experimental Results"
-    description: "ASIC 시작품 구간별 감지 거리 그래프 및 반복 성능 테스트 결과 (98% 성공률, 감지속도 10ms 이내)"
+
+video: "/assets/videos/soc-platform/demo.mp4"
 ---
 
 ## Project Overview

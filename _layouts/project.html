@@ -139,8 +139,6 @@ layout: default
             <!-- Right Column: Media -->
             <div class="project-right-panel">
 
-
-
                 <!-- 3D Models Section -->
                 {% if page.models %}
                 <section class="project-media-group" id="models">
@@ -241,9 +239,19 @@ layout: default
                     </div>
                 </section>
                 {% endif %}
+
+                <!-- Video Section -->
+                {% if page.video %}
+                <section class="project-media-group" id="video">
+                    <video width="100%" controls style="border-radius: var(--radius-md);">
+                        <source src="{{ page.video | relative_url }}" type="video/mp4">
+                    </video>
+                </section>
+                {% endif %}
+
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 <!-- Project Navigation -->
@@ -271,12 +279,13 @@ layout: default
                 <span>All Projects</span>
             </a>
 
-            {% if current_index < project_array.size %} {% assign next_project=project_array[current_index] %} <a
-                href="{{ next_project.url | relative_url }}" class="nav-link next">
+            {% if current_index < project_array.size %}
+            {% assign next_project = project_array[current_index] %}
+            <a href="{{ next_project.url | relative_url }}" class="nav-link next">
                 <span>{{ next_project.title }}</span>
                 <i class="fas fa-chevron-right"></i>
-                </a>
-                {% endif %}
+            </a>
+            {% endif %}
         </div>
     </div>
 </div>
