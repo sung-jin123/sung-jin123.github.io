@@ -14,10 +14,13 @@ published: true
 
 schematics:
   - file: "/assets/images/projects/safe-e-stop-hri/sensor_structure.png"
+    title: "Bendable Capacitive Proximity Sensor"
     description: "Structure of the bendable capacitive proximity sensor"
   - file: "/assets/images/projects/safe-e-stop-hri/framework.png"
+    title: "Adaptive Reactive Control Framework"
     description: "Architecture of adaptive reactive control framework"
   - file: "/assets/images/projects/safe-e-stop-hri/result.png"
+    title: "Experimental Results"
     description: "Experimental results - sensor distance and joint velocity response"
 ---
 

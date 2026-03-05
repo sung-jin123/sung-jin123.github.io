@@ -228,6 +228,9 @@ layout: default
                     <div class="schematics-stack">
                         {% for schematic in page.schematics %}
                         <div class="schematic-container">
+                            {% if schematic.title %}
+                            <h5 class="schematic-title">{{ schematic.title }}</h5>
+                            {% endif %}
                             <img src="{{ schematic.file | relative_url }}"
                                 alt="{{ schematic.description | default: 'Circuit Schematic' }}"
                                 class="schematic-image">
@@ -295,5 +298,13 @@ layout: default
     color: var(--text-secondary);
     margin-top: var(--spacing-sm);
     font-size: 0.9rem;
+}
+.schematic-title {
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 </style>
