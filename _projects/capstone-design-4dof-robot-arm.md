@@ -74,11 +74,7 @@ All structural parts were **3D-printed in PLA** using a custom design in UG NX. 
 
 Assuming the manipulator is horizontal (worst case):
 
-```
-τ_total = 4.36 N × 0.518 m + 0.589 N × 0.363 m
-        + 1.079 N × 0.214 m + 0.686 N × 0.154 m
-        = 2.81 N·m
-```
+$$\tau_{total} = 4.36\,\text{N} \times 0.518\,\text{m} + 0.589\,\text{N} \times 0.363\,\text{m} + 1.079\,\text{N} \times 0.214\,\text{m} + 0.686\,\text{N} \times 0.154\,\text{m} = 2.81\,\text{N·m}$$
 
 The AX-12A provides **1.50 N·m stall torque at 12V**, so two motors per joint satisfies the requirement.
 
@@ -105,28 +101,40 @@ To improve detection accuracy, the green conveyor belt background was converted 
 
 3D Cartesian target positions were simplified to a **2D planar problem** based on a referenced paper (DBpia, 2014). The equations implemented in MATLAB and then ported to Arduino are:
 
-```
-R'  = R - L4·cos(Φ)
-Z'  = Z - BASE_HEIGHT + L4·sin(Φ)
-A   = √(Z'² + R'²) / 2
-θ1  = atan2(Y, X)                          # Base rotation
-θ3  = asin(A / L3) × 2                     # Elbow angle
-θ2  = atan2(Z', R') + (180° - θ3) / 2     # Shoulder angle
-θ4  = 180° - Φ - θ2 - θ3                  # Wrist angle
-```
+$$R' = R - L_4 \cdot \cos(\Phi)$$
+
+$$Z' = Z - h_{base} + L_4 \cdot \sin(\Phi)$$
+
+$$A = \frac{\sqrt{Z'^2 + R'^2}}{2}$$
+
+| Joint | Equation |
+|-------|----------|
+| **θ₁** (Base) | $\theta_1 = \text{atan2}(Y,\, X)$ |
+| **θ₃** (Elbow) | $\theta_3 = \arcsin\!\left(\dfrac{A}{L_3}\right) \times 2$ |
+| **θ₂** (Shoulder) | $\theta_2 = \text{atan2}(Z',\, R') + \dfrac{180° - \theta_3}{2}$ |
+| **θ₄** (Wrist) | $\theta_4 = 180° - \Phi - \theta_2 - \theta_3$ |
 
 **12 waypoints** were pre-calculated in MATLAB and hardcoded as motion sequences in Arduino.
 
 ### System Flow
 
-```
-[Start]
-   ↓
-Conveyor ON → Ultrasonic sensor detects can?
-   ↓ YES
-Conveyor OFF → Robot arm receives coordinates?
-   ↓ YES
-Execute pick-and-place → Conveyor OFF → [End]
+```mermaid
+flowchart TD
+    A([🟢 Start]) --> B[Conveyor ON]
+    B --> C{Ultrasonic Sensor\nDetects Can?}
+    C -- No --> B
+    C -- Yes --> D[Conveyor OFF]
+    D --> E{Robot Arm\nReceives Coordinates?}
+    E -- No --> E
+    E -- Yes --> F[Execute Pick-and-Place]
+    F --> G[Conveyor OFF]
+    G --> H([🔴 End])
+
+    style A fill:#2ecc71,color:#fff
+    style H fill:#e74c3c,color:#fff
+    style C fill:#3498db,color:#fff
+    style E fill:#3498db,color:#fff
+    style F fill:#9b59b6,color:#fff
 ```
 
 ---
