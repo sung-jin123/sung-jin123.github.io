@@ -61,7 +61,7 @@ Developing a robot collision safety SoC with proximity sensing capability, along
 
 ---
 
-## ASIC Performance Results (2nd Year)
+## ASIC Performance Results 
 
 Comparative testing of the developed ASIC (NXA3110) against the commercial chip (TI FDC2214) under identical conditions:
 
