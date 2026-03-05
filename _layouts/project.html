@@ -227,12 +227,12 @@ layout: default
                     <h4>Schematics</h4>
                     <div class="schematics-stack">
                         {% for schematic in page.schematics %}
-                        <div class="schematic-container" style="padding-bottom: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
+                        <div class="schematic-container">
                             <img src="{{ schematic.file | relative_url }}"
                                 alt="{{ schematic.description | default: 'Circuit Schematic' }}"
                                 class="schematic-image">
                             {% if schematic.description %}
-                            <p class="media-caption" style="text-align: center; color: var(--text-secondary); margin-top: var(--spacing-sm); font-size: 0.9rem;">{{ schematic.description }}</p>
+                            <p class="media-caption">{{ schematic.description }}</p>
                             {% endif %}
                         </div>
                         {% endfor %}
@@ -282,6 +282,8 @@ layout: default
 <style>
 .schematic-container {
     border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
 }
 .schematic-container:last-child {
     border-bottom: none;
@@ -293,8 +295,5 @@ layout: default
     color: var(--text-secondary);
     margin-top: var(--spacing-sm);
     font-size: 0.9rem;
-    padding: 0 var(--spacing-md);
-    word-break: break-word;
-    white-space: normal;
 }
 </style>
