@@ -151,8 +151,8 @@ layout: default
             <span class="skill-tag">UG NX</span>
           </div>
         </div>
-        <div class="Simulator">
-          <h3><i class="fas fa-cube"></i> CAD / Design</h3>
+        <div class="skill-category">
+          <h3><i class="fas fa-cube"></i>Simulator</h3>
           <div class="skill-tags">
             <span class="skill-tag">Issac Sim</span>
             <span class="skill-tag">Gazebo</span>
