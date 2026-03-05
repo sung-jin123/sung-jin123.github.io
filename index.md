@@ -121,9 +121,9 @@ layout: default
         <div class="skill-category">
           <h3><i class="fas fa-robot"></i> Robotics</h3>
           <div class="skill-tags">
-            <span class="skill-tag">ROS2</span>
+            <span class="skill-tag">ROS1, ROS2</span>
             <span class="skill-tag">Reactive Control</span>
-            <span class="skill-tag">Proximity Sensing</span>
+            <span class="skill-tag">Sensor Fusion</span>
             <span class="skill-tag">HRI</span>
           </div>
         </div>
@@ -132,8 +132,6 @@ layout: default
           <div class="skill-tags">
             <span class="skill-tag">Altium</span>
             <span class="skill-tag">STM32CubeIDE</span>
-            <span class="skill-tag">Capacitive Sensor</span>
-            <span class="skill-tag">PCB Design</span>
           </div>
         </div>
         <div class="skill-category">
@@ -143,6 +141,7 @@ layout: default
             <span class="skill-tag">C / C++</span>
             <span class="skill-tag">MATLAB</span>
             <span class="skill-tag">LabVIEW</span>
+            <span class="skill-tag">Pytorch</span>
           </div>
         </div>
         <div class="skill-category">
@@ -150,8 +149,13 @@ layout: default
           <div class="skill-tags">
             <span class="skill-tag">Inventor</span>
             <span class="skill-tag">UG NX</span>
-            <span class="skill-tag">3D Modeling</span>
-            <span class="skill-tag">Mechanical Design</span>
+          </div>
+        </div>
+        <div class="Simulator">
+          <h3><i class="fas fa-cube"></i> CAD / Design</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Issac Sim</span>
+            <span class="skill-tag">Gazebo</span>
           </div>
         </div>
       </div>
