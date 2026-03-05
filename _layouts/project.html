@@ -221,22 +221,24 @@ layout: default
                 </div>
                 {% endif %}
 
-                <!-- Circuit Schematics -->
+            <!-- Circuit Schematics -->
                 {% if page.schematics %}
                 <section class="project-media-group" id="schematics">
                     <h4>Schematics</h4>
                     <div class="schematics-stack">
                         {% for schematic in page.schematics %}
-                        <div class="schematic-container">
+                        <div class="schematic-container" style="border-bottom: 1px solid var(--border-color); padding-bottom: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
                             <img src="{{ schematic.file | relative_url }}"
                                 alt="{{ schematic.description | default: 'Circuit Schematic' }}"
                                 class="schematic-image">
+                            {% if schematic.description %}
+                            <p class="media-caption" style="text-align: center; color: var(--text-secondary); margin-top: var(--spacing-sm); font-size: 0.9rem;">{{ schematic.description }}</p>
+                            {% endif %}
                         </div>
                         {% endfor %}
-                    </div>
-            </div>
-            </section>
-            {% endif %}
+    </div>
+</section>
+{% endif %}
 
         </div>
     </div>
