@@ -9,6 +9,8 @@ github_url: "https://github.com/aojedao/6dof-robotic-arm"
 demo_url: "#"
 interactive_plot: true
 
+published: false
+
 models:
   - file: "/assets/models/robotic-arm/base.gltf"
     description: "Robotic arm base with servo mounting points"
