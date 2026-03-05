@@ -8,11 +8,32 @@ featured_image: "/assets/images/projects/capstone-design-4dof/featured.jpg"
 github_url: ""
 demo_url: ""
 
+# Components List
+components:
+  - name: "Dynamixel AX-12A"
+    quantity: 6
+    description: "Smart servo motors for robot arm joints (Base, Shoulder x2, Elbow x2, Wrist)"
+    link: "https://www.robotis.com/shop/item.php?it_id=902-0003-001"
+  - name: "Arduino Mega 2560 Rev3"
+    quantity: 1
+    description: "Main microcontroller for robot arm control"
+  - name: "Dynamixel Shield"
+    quantity: 1
+    description: "Arduino shield for Dynamixel motor control via TTL communication"
+  - name: "HC-SR04 Ultrasonic Sensor"
+    quantity: 1
+    description: "Detects when cans are missing from the showcase"
+  - name: "USB Camera"
+    quantity: 1
+    description: "Real-time object detection for can type classification"
+  - name: "PLA Filament"
+    quantity: 1
+    description: "3D-printed structural parts for gripper, links, and base"
 ---
 
 ## Overview
 
-This project was developed as a **2023 Capstone Design** at Hansung University, in collaboration with team members
+This project was developed as a **2023 Capstone Design** at Hansung University (한성대학교), in collaboration with team members 정낙형 and 김다윤 under Professor 최재봉.
 
 The goal was to design an **automated logistics restocking system** for unmanned convenience store walk-in refrigerators. Unmanned convenience stores have grown rapidly (208 → 2,783 stores from 2019–2022), yet their inventory management remains manual. Our system automates this by detecting empty spots via ultrasonic sensor and using a 4-DOF robot arm to restock cans automatically.
 
