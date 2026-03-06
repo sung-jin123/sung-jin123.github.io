@@ -35,6 +35,14 @@ Conventional safety sensors suffer from blind spots, limited short-range detecti
 
 ---
 
+## Assigned Tasks
+
+- **[Gen3] Bendable Proximity Sensor Redesign & Fabrication**
+- **RMPflow-based Reactive Motion Control Framework Integration with Proximity Sensor**
+- **Real-time Obstacle Avoidance Experiment Validation on UR-10**
+
+---
+
 ## 1. Mechanically Bendable Sensor Structure (Planar + Planar)
 
 ### Design Background

@@ -27,6 +27,14 @@ The goal was to design an **automated logistics restocking system** for unmanned
 
 ---
 
+## Assigned Tasks
+
+- **YOLOv4 Custom Model Training & Real-time Object Detection**
+- **Manipulator Control System Design**
+- **Inverse Kinematics Calculation & Motion Implementation**
+
+---
+
 ## System Architecture
 
 The overall system consists of three main parts:

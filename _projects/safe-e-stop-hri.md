@@ -46,6 +46,16 @@ To address these limitations, we developed a bendable capacitive proximity senso
 
 ---
 
+## Assigned Tasks
+
+- **Bendable Capacitive Proximity Sensor Design & Fabrication**
+- **Capacitive & ToF Sensor Fusion for Distance Estimation**
+- **MCU Firmware Development with I2C & CAN Communication**
+- **ROS-based Real-Time Emergency Stop (E-stop) Safety Control System Development**
+
+---
+
+
 ## Bendable Capacitive Proximity Sensor
 
 ### Structure

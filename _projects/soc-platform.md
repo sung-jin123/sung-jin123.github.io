@@ -29,6 +29,16 @@ This project is part of the Next-Generation Intelligent Semiconductor Technology
 
 ---
 
+## Assigned Tasks
+
+- **MCU Firmware Development for Sensor Signal Processing**
+- **Contact/Non-contact State Recognition & Proximity Sensing Intelligence Algorithm Development**
+- **Real-time Obstacle Response Intelligence Safety Framework Algorithm Development**
+- **Real-time Obstacle Avoidance Experiment Validation on UR-10**
+
+---
+
+
 ## Background & Motivation
 
 As collaborative service robots become more prevalent in shared human-robot workspaces, the demand for **safety and functionality** has grown significantly. Unlike traditional industrial robots that operate behind safety fences, collaborative robots must work alongside humans without physical barriers — making **real-time collision detection and avoidance sensors** essential.
